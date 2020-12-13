@@ -1,13 +1,40 @@
 import React from "react";
 import "./App.css";
+import BeyContainer from "./Containers/BeyContainer";
+import Favorites from "./Containers/Favorites";
 
-const App = () => {
+class App extends React.Component {
 
-  return (
-    <div className="container" >
+  state={
+    faveBey: []
+  }
+  
+  checkState = () => {
+    console.log("After SetState:",this.state)
+  }
+  addToFaves = (beyObj) => {
+    if(!beyObj.favorite) {
+      beyObj.favorite = true
+      this.setState((prevState) => ({faveBey: [...prevState.faveBey, beyObj]}), this.checkState)
+    } else {
+      beyObj.favorite = false
+      this.setState((prevState) => (
+        {faveBey: prevState.faveBey.slice(0, prevState.faveBey.length -1)}
+        ), this.checkState)
+        window.alert("I got a hot sauce in my bag, swag")
+    }
+  }
 
-    </div>
-  );
-};
 
-export default App;
+  render(){
+    return (
+      <div className="container" >
+          <BeyContainer addToFaves={this.addToFaves} />
+          <Favorites beyArray={this.state.faveBey} addToFaves={this.addToFaves} />
+      </div>
+    )
+  }
+  
+}
+
+export default App
