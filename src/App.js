@@ -19,7 +19,7 @@ class App extends React.Component {
     } else {
       beyObj.favorite = false
       this.setState((prevState) => (
-        {faveBey: prevState.faveBey.slice(0, prevState.faveBey.length -1)}
+        {faveBey: prevState.faveBey.filter(beyObj => beyObj.favorite == true)}
         ), this.checkState)
         window.alert("I got a hot sauce in my bag, swag")
     }
