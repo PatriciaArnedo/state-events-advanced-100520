@@ -3,22 +3,22 @@ import BeyCard from '../Components/BeyCard'
 
 
 
-export default class Favorites extends Component {
+function Favorites(props) {
   
-  renderFaveCards = () => {
-    console.log("In FAVORITES:", this.props.beyArray)
+  const renderCards = () => {
     return (
-      this.props.beyArray.map((beyObj) => <BeyCard key={beyObj.id} beyObj={beyObj} addToFaves={this.props.addToFaves} />)
+      props.beyArray.map((beyObj) => <BeyCard key={beyObj.id} beyObj={beyObj} clickHandler={props.clickHandler} />)
     )
   }
   
-  render() {
-    
-    return (
-      <div className="favorites">
-        <h1>Favorites</h1>
-        {this.renderFaveCards()}
-      </div>
-    );
-  }
+
+  return (
+    <div className="favorites">
+      <h1>Favorites</h1>
+      {renderCards()}
+    </div>
+  )
+  
 }
+
+export default Favorites
